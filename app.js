@@ -1,40 +1,42 @@
 // ============================================================
 // OPERION FRONTEND CONTROLLER
-// GitHub Pages + n8n Webhook Integration
+// GitHub Pages + n8n Webhook Integration (V21 Aligned)
 // ============================================================
 
-// 🔒 OPERION WEBHOOK ENDPOINT (YOUR LIVE URL)
+// 🔒 OPERION WEBHOOK ENDPOINT
 const OPERION_ENDPOINT = "https://nonrhymed-elmer-chrysocarpous.ngrok-free.dev/webhook/operion/demo-request";
 
 
 // ============================================================
 // DEMO FORM HANDLER
+// Matches demo.html EXACTLY (no assumptions)
 // ============================================================
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  const form = document.getElementById("demoForm");
+  const form = document.getElementById("demo-form");
 
   if (!form) return;
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    // Collect form data
     const formData = new FormData(form);
 
+    // 🔧 RAW INPUT (no fake structure)
     const payload = {
       source: "operion_demo_request",
-      intent: "demo_request",
       timestamp: new Date().toISOString(),
 
-      business_name: formData.get("business_name"),
-      contact_name: formData.get("contact_name"),
+      name: formData.get("name"),
       email: formData.get("email"),
-      enquiry: formData.get("enquiry")
+      phone: formData.get("phone"),
+      company: formData.get("company"),
+      business_type: formData.get("business_type"),
+      employees: formData.get("employees"),
+      message: formData.get("message")
     };
 
-    // UI feedback (optional but safe)
     const button = form.querySelector("button");
     const originalText = button.innerText;
 
@@ -55,14 +57,22 @@ document.addEventListener("DOMContentLoaded", () => {
         throw new Error("Webhook failed");
       }
 
-      // Success
-      alert("Operion received your enquiry.");
+      // ✅ UI response (non-intrusive)
+      const responseBox = document.getElementById("demo-response");
+      if (responseBox) {
+        responseBox.innerHTML = "<div class='alert alert-success'>Operion has processed your enquiry.</div>";
+      }
+
       form.reset();
 
     } catch (error) {
 
       console.error("Operion error:", error);
-      alert("Submission failed. Please try again.");
+
+      const responseBox = document.getElementById("demo-response");
+      if (responseBox) {
+        responseBox.innerHTML = "<div class='alert alert-error'>Submission failed. Check connection.</div>";
+      }
 
     } finally {
 
