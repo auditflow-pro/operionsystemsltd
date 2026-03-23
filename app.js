@@ -1,85 +1,57 @@
-// ============================================================
-// OPERION FRONTEND CONTROLLER
-// GitHub Pages + n8n Webhook Integration (V21 Aligned)
-// ============================================================
-
-// 🔒 OPERION WEBHOOK ENDPOINT
-const OPERION_ENDPOINT = "https://https://ohperion.app.n8n.cloud/webhook/webhook/operion/demo-request";
-
-
-// ============================================================
-// DEMO FORM HANDLER
-// Matches demo.html EXACTLY (no assumptions)
-// ============================================================
-
 document.addEventListener("DOMContentLoaded", () => {
-
   const form = document.getElementById("demo-form");
-
-  if (!form) return;
+  const responseBox = document.getElementById("demo-response");
+  const submitBtn = document.getElementById("demo-submit");
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const formData = new FormData(form);
+    // UI state
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Processing...";
+    responseBox.innerHTML = "";
 
-    // 🔧 RAW INPUT (no fake structure)
-    const payload = {
-      source: "operion_demo_request",
-      timestamp: new Date().toISOString(),
-
-      name: formData.get("name"),
-      email: formData.get("email"),
-      phone: formData.get("phone"),
-      company: formData.get("company"),
-      business_type: formData.get("business_type"),
-      employees: formData.get("employees"),
-      message: formData.get("message")
-    };
-
-    const button = form.querySelector("button");
-    const originalText = button.innerText;
-
-    button.disabled = true;
-    button.innerText = "Processing...";
+    // Collect values
+    const name = document.getElementById("demo-name").value;
+    const email = document.getElementById("demo-email").value;
+    const company = document.getElementById("demo-company").value;
+    const message = document.getElementById("demo-message").value;
 
     try {
-
-      const response = await fetch(OPERION_ENDPOINT, {
+      const res = await fetch("https://ohperion.app.n8n.cloud/webhook/operion/demo-request", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify(payload)
+        body: JSON.stringify({
+          name,
+          email,
+          business: company,
+          enquiry: message
+        })
       });
 
-      if (!response.ok) {
-        throw new Error("Webhook failed");
-      }
+      const data = await res.json();
 
-      // ✅ UI response (non-intrusive)
-      const responseBox = document.getElementById("demo-response");
-      if (responseBox) {
-        responseBox.innerHTML = "<div class='alert alert-success'>Operion has processed your enquiry.</div>";
-      }
+      // Render response
+      responseBox.innerHTML = `
+        <div style="margin-top:1rem;padding:1rem;border:1px solid #00e5ff;border-radius:8px;">
+          <strong>Operion Response:</strong><br><br>
+          ${data.reply.replace(/\n/g, "<br>")}
+        </div>
+      `;
 
-      form.reset();
+    } catch (err) {
+      console.error(err);
 
-    } catch (error) {
-
-      console.error("Operion error:", error);
-
-      const responseBox = document.getElementById("demo-response");
-      if (responseBox) {
-        responseBox.innerHTML = "<div class='alert alert-error'>Submission failed. Check connection.</div>";
-      }
-
-    } finally {
-
-      button.disabled = false;
-      button.innerText = originalText;
-
+      responseBox.innerHTML = `
+        <div style="color:#ff6b6b;margin-top:1rem;">
+          Submission failed. Check connection.
+        </div>
+      `;
     }
-  });
 
+    submitBtn.disabled = false;
+    submitBtn.textContent = "Process Enquiry →";
+  });
 });
