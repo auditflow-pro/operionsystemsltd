@@ -12,15 +12,10 @@ const OPERION = {
 
   // ── API ENDPOINTS (v2.0) ─────────────────────────────────────
   PATHS: {
-    ONBOARD:         '/webhook/operion/onboard',
-    DASHBOARD:       '/webhook/operion/dashboard',
-    TIER_CHECK:      '/webhook/operion/tier/check',
-    DEMO_REQUEST:    '/webhook/operion/demo-request',
-    HEALTH:          '/webhook/operion/health',
-    KB_ADD:          '/webhook/operion/kb/add',
-    KB_SEARCH:       '/webhook/operion/kb/search',
-    ADMIN_RECS:      '/webhook/operion/admin/recommendations',
-    MARKETPLACE:     '/webhook/operion/marketplace',
+  PROCESS:   '/process',
+  ONBOARD:   '/onboard',
+  HEALTH:    '/health',
+  DASHBOARD: '/dashboard' 
   },
 
   // ── STRIPE ───────────────────────────────────────────────────
