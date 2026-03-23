@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" fill="none">
+
+  <defs>
+    <!-- Outer metal gradient -->
+    <linearGradient id="edge" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0ff"></stop>
+      <stop offset="50%" stop-color="#00b8cc"></stop>
+      <stop offset="100%" stop-color="#003a4a"></stop>
+    </linearGradient>
+
+    <!-- Inner glow -->
+    <radialGradient id="coreGlow">
+      <stop offset="0%" stop-color="#00E5FF" stop-opacity="1"></stop>
+      <stop offset="60%" stop-color="#00E5FF" stop-opacity="0.4"></stop>
+      <stop offset="100%" stop-color="#00E5FF" stop-opacity="0"></stop>
+    </radialGradient>
+
+    <!-- Node highlight -->
+    <radialGradient id="node">
+      <stop offset="0%" stop-color="#bfffff"></stop>
+      <stop offset="100%" stop-color="#00E5FF"></stop>
+    </radialGradient>
+
+    <!-- Soft blur -->
+    <filter id="blur" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6"></feGaussianBlur>
+    </filter>
+  </defs>
+
+  <!-- Outer hex frame -->
+  <polygon points="120,10 210,60 210,180 120,230 30,180 30,60" fill="#050810" stroke="url(#edge)" stroke-width="4"></polygon>
+
+  <!-- Bevel highlight (top edges) -->
+  <polyline points="120,10 210,60 120,120 30,60 120,10" stroke="#8fffff" stroke-opacity="0.3" stroke-width="2" fill="none"></polyline>
+
+  <!-- Internal structure -->
+  <g stroke="#00E5FF" stroke-width="1.5" opacity="0.5">
+    <line x1="120" y1="120" x2="120" y2="10"></line>
+    <line x1="120" y1="120" x2="210" y2="60"></line>
+    <line x1="120" y1="120" x2="210" y2="180"></line>
+    <line x1="120" y1="120" x2="120" y2="230"></line>
+    <line x1="120" y1="120" x2="30" y2="180"></line>
+    <line x1="120" y1="120" x2="30" y2="60"></line>
+  </g>
+
+  <!-- Secondary structure (adds depth) -->
+  <g stroke="#00E5FF" stroke-width="1" opacity="0.25">
+    <line x1="30" y1="60" x2="210" y2="180"></line>
+    <line x1="210" y1="60" x2="30" y2="180"></line>
+  </g>
+
+  <!-- Core glow -->
+  <circle cx="120" cy="120" r="40" fill="url(#coreGlow)" filter="url(#blur)"></circle>
+
+  <!-- Core sphere -->
+  <circle cx="120" cy="120" r="16" fill="url(#node)"></circle>
+
+  <!-- Node highlights -->
+  <g fill="#00E5FF">
+    <circle cx="120" cy="10" r="3"></circle>
+    <circle cx="210" cy="60" r="3"></circle>
+    <circle cx="210" cy="180" r="3"></circle>
+    <circle cx="120" cy="230" r="3"></circle>
+    <circle cx="30" cy="180" r="3"></circle>
+    <circle cx="30" cy="60" r="3"></circle>
+  </g>
+
+</svg>
