@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const message = document.getElementById("demo-message").value;
 
     try {
-      const res = await fetch("https://nonrhymed-elmer-chrysocarpous.ngrok-free.dev/webhook/operion", {
+      const res = await fetch("https://nonrhymed-elmer-chrysocarpous.ngrok-free.dev/webhook/operion/demo-request", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
