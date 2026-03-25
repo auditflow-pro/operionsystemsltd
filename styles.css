@@ -281,3 +281,21 @@ footer{
         margin-left:0;
     }
 }
+/* STEP SYSTEM */
+
+.step{
+    display:none;
+}
+
+.step.active{
+    display:block;
+}
+
+.step-indicator{
+    margin-bottom:20px;
+    color:#94a3b8;
+}
+
+.step-controls{
+    margin-top:20px;
+}
