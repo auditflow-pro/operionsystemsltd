@@ -1,238 +1,79 @@
-/* RESET */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+body{
+    margin:0;
+    font-family: Arial, sans-serif;
+    background:#020617;
+    color:#e2e8f0;
 }
 
-/* BASE */
-body {
-  font-family: system-ui, -apple-system, sans-serif;
-  background: #020812;
-  color: #d9e6f2;
-  line-height: 1.5;
+.nav{
+    display:flex;
+    justify-content:space-between;
+    padding:20px;
+    border-bottom:1px solid #0f172a;
 }
 
-/* GLOBAL CONTAINER */
-.section {
-  max-width: 920px;
-  margin: auto;
-  padding: 60px 20px;
+.logo{
+    width:30px;
 }
 
-/* NAV */
-.nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 18px 24px;
-  border-bottom: 1px solid #0d2233;
+.brand{
+    margin-left:10px;
 }
 
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+button{
+    background:#06b6d4;
+    border:none;
+    padding:10px 16px;
+    color:black;
 }
 
-.logo img {
-  width: 28px;
+.hero{
+    padding:60px 20px;
 }
 
-.logo span {
-  font-weight: 600;
-  letter-spacing: 1px;
+.hero h1{
+    font-size:42px;
 }
 
-.nav-actions a {
-  margin-left: 16px;
-  font-size: 14px;
-  color: #8aa2b5;
-  text-decoration: none;
+.hero span{
+    color:#06b6d4;
 }
 
-/* HERO */
-.hero {
-  padding: 80px 20px 40px;
-  max-width: 920px;
-  margin: auto;
+.system{
+    padding:40px 20px;
 }
 
-.badge {
-  color: #00d9ff;
-  font-size: 13px;
-  margin-bottom: 18px;
+.grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
 }
 
-h1 {
-  font-size: 42px;
-  line-height: 1.2;
-  font-weight: 600;
+.pricing{
+    padding:40px 20px;
 }
 
-.accent {
-  color: #00d9ff;
+.tiers{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
 }
 
-.hero p {
-  margin-top: 18px;
-  color: #8aa2b5;
-  max-width: 580px;
+.demo, .onboard{
+    padding:40px 20px;
 }
 
-/* BUTTONS */
-.cta {
-  margin-top: 28px;
-  display: flex;
-  gap: 10px;
+input, textarea{
+    width:100%;
+    padding:10px;
+    margin-bottom:10px;
+    background:#020617;
+    border:1px solid #334155;
+    color:white;
 }
 
-button {
-  cursor: pointer;
-  font-size: 14px;
-}
-
-.btn-primary {
-  background: #00d9ff;
-  color: #001018;
-  padding: 12px 18px;
-  border: none;
-  font-weight: 600;
-}
-
-.btn-secondary {
-  border: 1px solid #00d9ff;
-  color: #00d9ff;
-  padding: 12px 18px;
-  background: transparent;
-}
-
-/* STRUCTURED BLOCKS (KEY CHANGE) */
-.block {
-  border: 1px solid #0d2233;
-  background: #060f1a;
-  padding: 22px;
-  margin-top: 20px;
-}
-
-/* GRID SYSTEM */
-.grid-3 {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 16px;
-}
-
-.grid-3 .block h3 {
-  margin-bottom: 8px;
-}
-
-/* PRICING (NOT CARDS — PANELS) */
-.pricing {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 14px;
-}
-
-.plan {
-  border: 1px solid #0d2233;
-  background: #050e18;
-  padding: 18px;
-}
-
-.plan.highlight {
-  border: 1px solid #00d9ff;
-}
-
-.plan h3 {
-  font-size: 16px;
-  margin-bottom: 6px;
-}
-
-.plan .price {
-  font-size: 20px;
-  color: #00d9ff;
-  margin-bottom: 6px;
-}
-
-.plan p {
-  font-size: 13px;
-  color: #8aa2b5;
-}
-
-/* FORM = SYSTEM CONFIG PANEL */
-form {
-  margin-top: 20px;
-}
-
-form h3 {
-  margin-top: 30px;
-  margin-bottom: 10px;
-  font-size: 15px;
-  color: #00d9ff;
-}
-
-/* INPUTS */
-input,
-textarea,
-select {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 12px;
-
-  background: #020812;
-  border: 1px solid #0d2233;
-
-  color: #d9e6f2;
-  font-size: 14px;
-}
-
-textarea {
-  min-height: 100px;
-}
-
-/* CHECKBOX BLOCK */
-label {
-  display: block;
-  font-size: 13px;
-  color: #8aa2b5;
-  margin-bottom: 10px;
-}
-
-/* STATUS */
-#demoStatus,
-#onboardStatus {
-  margin-top: 10px;
-  color: #00d9ff;
-  font-size: 13px;
-}
-
-/* FOOTER */
-footer {
-  margin-top: 60px;
-  padding: 30px 20px;
-  text-align: center;
-  border-top: 1px solid #0d2233;
-  color: #8aa2b5;
-  font-size: 13px;
-}
-
-footer a {
-  color: #00d9ff;
-  text-decoration: none;
-}
-
-/* DESKTOP */
-@media (min-width: 768px) {
-
-  .grid-3 {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .pricing {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  h1 {
-    font-size: 50px;
-  }
+footer{
+    padding:20px;
+    text-align:center;
+    border-top:1px solid #0f172a;
 }
