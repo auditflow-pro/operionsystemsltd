@@ -1,57 +1,150 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("demo-form");
-  const responseBox = document.getElementById("demo-response");
-  const submitBtn = document.getElementById("demo-submit");
+// ================================
+// OPERION INTERFACE CONTROL LAYER
+// Deterministic UI State Engine
+// ================================
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+// ---------- NAVIGATION ----------
+function scrollToSection(id){
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.scrollIntoView({ behavior: "smooth" });
+}
 
-    // UI state
-    submitBtn.disabled = true;
-    submitBtn.textContent = "Processing...";
-    responseBox.innerHTML = "";
+// ---------- STATE ----------
+const STATE = {
+    demo: "idle",
+    onboard: "idle"
+};
 
-    // Collect values
-    const name = document.getElementById("demo-name").value;
-    const email = document.getElementById("demo-email").value;
-    const company = document.getElementById("demo-company").value;
-    const message = document.getElementById("demo-message").value;
+// ---------- UTIL ----------
+function setStatus(id, message, type="info"){
+    const el = document.getElementById(id);
+    if (!el) return;
 
-    try {
-      const res = await fetch("https://nonrhymed-elmer-chrysocarpous.ngrok-free.dev/webhook/operion/demo-request", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          business: company,
-          enquiry: message
-        })
-      });
+    el.innerText = message;
+    el.style.color =
+        type === "error" ? "#ef4444" :
+        type === "success" ? "#22c55e" :
+        "#94a3b8";
+}
 
-      const data = await res.json();
-
-      // Render response
-      responseBox.innerHTML = `
-        <div style="margin-top:1rem;padding:1rem;border:1px solid #00e5ff;border-radius:8px;">
-          <strong>Operion Response:</strong><br><br>
-          ${data.reply.replace(/\n/g, "<br>")}
-        </div>
-      `;
-
-    } catch (err) {
-      console.error(err);
-
-      responseBox.innerHTML = `
-        <div style="color:#ff6b6b;margin-top:1rem;">
-          Submission failed. Check connection.
-        </div>
-      `;
+function validateCheckboxes(form){
+    const checkboxes = form.querySelectorAll('input[type="checkbox"]');
+    for (let cb of checkboxes){
+        if (!cb.checked){
+            return false;
+        }
     }
+    return true;
+}
 
-    submitBtn.disabled = false;
-    submitBtn.textContent = "Process Enquiry →";
-  });
-});
+// ---------- DEMO FORM ----------
+const demoForm = document.getElementById("demoForm");
+
+if (demoForm){
+    demoForm.addEventListener("submit", async function(e){
+        e.preventDefault();
+
+        if (STATE.demo === "loading") return;
+
+        STATE.demo = "loading";
+        setStatus("demoStatus", "Processing request...");
+
+        const data = {
+            name: demoForm[0].value,
+            email: demoForm[1].value,
+            message: demoForm[2].value
+        };
+
+        try {
+            // Placeholder for n8n webhook
+            await new Promise(res => setTimeout(res, 800));
+
+            STATE.demo = "success";
+            setStatus(
+                "demoStatus",
+                "Request logged. Operion will respond.",
+                "success"
+            );
+
+            demoForm.reset();
+
+        } catch (err){
+            STATE.demo = "error";
+            setStatus(
+                "demoStatus",
+                "Submission failed. Retry.",
+                "error"
+            );
+        }
+    });
+}
+
+// ---------- ONBOARDING FORM ----------
+const onboardForm = document.getElementById("onboardForm");
+
+if (onboardForm){
+    onboardForm.addEventListener("submit", async function(e){
+        e.preventDefault();
+
+        if (STATE.onboard === "loading") return;
+
+        // VALIDATION
+        if (!validateCheckboxes(onboardForm)){
+            setStatus(
+                "onboardStatus",
+                "All legal confirmations required.",
+                "error"
+            );
+            return;
+        }
+
+        STATE.onboard = "loading";
+        setStatus("onboardStatus", "Validating configuration...");
+
+        const data = {
+            business_name: onboardForm[0].value,
+            owner_name: onboardForm[1].value,
+            email: onboardForm[2].value,
+
+            services: onboardForm[3].value,
+            tone: onboardForm[4].value,
+
+            smtp_host: onboardForm[5].value,
+            smtp_user: onboardForm[6].value,
+            smtp_pass: onboardForm[7].value
+        };
+
+        try {
+            // Placeholder for:
+            // 1. Neon DB insert
+            // 2. Stripe session creation
+            // 3. n8n activation trigger
+
+            await new Promise(res => setTimeout(res, 1200));
+
+            STATE.onboard = "success";
+
+            setStatus(
+                "onboardStatus",
+                "Configuration accepted. Redirecting to payment...",
+                "success"
+            );
+
+            // Future:
+            // window.location.href = stripe_url;
+
+        } catch (err){
+            STATE.onboard = "error";
+
+            setStatus(
+                "onboardStatus",
+                "Configuration failed. Check inputs.",
+                "error"
+            );
+        }
+    });
+}
+
+// ---------- SYSTEM LOCK (PREVENT RANDOM EXECUTION) ----------
+Object.freeze(STATE);
