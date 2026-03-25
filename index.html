@@ -11,13 +11,13 @@
 
 <header class="nav">
   <div class="logo">
-    <img src="assets/logo.svg">
+    <img src="assets/logo.svg" alt="Operion">
     <span>OPERION</span>
   </div>
 
   <div class="nav-actions">
-    <a href="admin.html">Admin</a>
-    <a href="#pricing" class="btn-primary">Get Started</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#onboard" class="btn-primary">Get Started</a>
   </div>
 </header>
 
@@ -31,10 +31,9 @@
   </h1>
 
   <p>
-    Operion receives your customer messages, understands what they need,
-    and responds in your business voice — directly from your email.
+    Operion receives your customer messages, understands intent, and responds in your business voice — directly from your systems.
     <br><br>
-    No dashboards. No workflows. No manual handling.
+    Structured. Controlled. Auditable.
   </p>
 
   <div class="cta">
@@ -48,18 +47,18 @@
 
   <div class="grid-3">
     <div>
-      <h3>Receives</h3>
-      <p>Captures enquiries from email, web, and APIs.</p>
+      <h3>Input</h3>
+      <p>Captures enquiries from email, web forms, and APIs.</p>
     </div>
 
     <div>
-      <h3>Understands</h3>
-      <p>Evaluates context using structured logic and controlled AI.</p>
+      <h3>Process</h3>
+      <p>Structured logic + controlled AI evaluates context.</p>
     </div>
 
     <div>
-      <h3>Responds</h3>
-      <p>Replies directly to your customers as your business.</p>
+      <h3>Respond</h3>
+      <p>Replies directly as your business with full audit trace.</p>
     </div>
   </div>
 </section>
@@ -100,9 +99,9 @@
   <h2>Request a Demonstration</h2>
 
   <form id="demoForm">
-    <input placeholder="Name" required>
-    <input placeholder="Email" required>
-    <textarea placeholder="What would you like to test?"></textarea>
+    <input name="name" placeholder="Name" required>
+    <input name="email" placeholder="Email" required>
+    <textarea name="message" placeholder="What would you like to test?"></textarea>
     <button class="btn-primary">Submit</button>
   </form>
 
@@ -110,41 +109,70 @@
 </section>
 
 <section class="section" id="onboard">
-  <h2>Start Using Operion</h2>
 
-  <form id="onboardForm">
+<h2>Start Using Operion</h2>
 
-    <input placeholder="Business Name" required>
-    <input placeholder="Owner Name" required>
-    <input placeholder="Business Email" required>
+<form id="onboardForm">
 
-    <input placeholder="Business Type">
-    <input placeholder="Response Tone">
-    <input placeholder="Primary Objective">
+<h3>1. Business Information</h3>
 
-    <input placeholder="SMTP Host">
-    <input placeholder="SMTP Email">
-    <input type="password" placeholder="SMTP Password">
+<input name="business_name" placeholder="Business Name" required>
+<input name="owner_name" placeholder="Owner Name" required>
+<input name="email" placeholder="Business Email" required>
+<input name="phone" placeholder="Phone Number">
 
-    <select>
-      <option>Starter</option>
-      <option>Growth</option>
-      <option>Scale</option>
-      <option>Enterprise</option>
-    </select>
+<input name="website" placeholder="Website URL">
+<input name="business_type" placeholder="Business Type">
 
-    <button class="btn-primary">Proceed to Payment</button>
+<h3>2. Brand Voice & Services</h3>
 
-  </form>
+<textarea name="brand_voice" placeholder="Describe your tone" required></textarea>
 
-  <p id="onboardStatus"></p>
+<input name="persona" placeholder="Response Persona">
+
+<textarea name="services" placeholder="Services offered" required></textarea>
+
+<input name="hours" placeholder="Operating Hours">
+<input name="emergency_contact" placeholder="Emergency Contact">
+
+<input name="escalation_email" placeholder="Escalation Email">
+
+<textarea name="custom_instructions" placeholder="Custom Instructions"></textarea>
+
+<h3>3. Email Configuration</h3>
+
+<input name="smtp_host" placeholder="SMTP Host" required>
+<input name="smtp_port" placeholder="Port" value="587" required>
+<input name="smtp_user" placeholder="SMTP Username" required>
+<input type="password" name="smtp_pass" placeholder="SMTP Password" required>
+
+<input name="from_email" placeholder="From Email">
+<input name="display_name" placeholder="Display Name">
+
+<h3>4. FAQs</h3>
+
+<textarea name="faqs" placeholder="FAQs (optional)"></textarea>
+
+<h3>5. Legal Confirmation</h3>
+
+<label><input type="checkbox" required> Accept Terms</label>
+<label><input type="checkbox" required> Accept AI Disclaimer</label>
+<label><input type="checkbox" required> GDPR Compliance</label>
+<label><input type="checkbox" required> Lawful Use</label>
+
+<button class="btn-primary">Proceed to Payment</button>
+
+</form>
+
+<p id="onboardStatus"></p>
+
 </section>
 
 <section class="section">
-  <h2>Built for Control</h2>
+  <h2>Governed Operation</h2>
   <p>
-    Operion operates within defined rules, validation layers, and audit trails.
-    AI is used as a component — not as an uncontrolled decision-maker.
+    Operion operates within deterministic pipelines, audit logs, and controlled AI execution layers.
+    Autonomy is bounded. Every action is traceable.
   </p>
 </section>
 
@@ -152,6 +180,7 @@
   <p>Operion Systems Ltd</p>
   <p>operionautomations@gmail.com</p>
   <p><a href="legal.html">Legal & Disclaimer</a></p>
+  <p>© 2026 Operion Systems Ltd</p>
 </footer>
 
 <script src="script.js"></script>
