@@ -1,158 +1,39 @@
-<!DOCTYPE html>
+l<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard — Operion Systems Ltd</title>
-  <meta name="robots" content="noindex, nofollow">
+  <title>Client Dashboard</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<nav class="nav">
-  <a href="index.html" class="nav-logo">
-    <img src="logo.svg" alt="Operion Systems">
-    OPERION <span class="nav-logo-sys">SYSTEMS</span>
-  </a>
-  <div class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="pricing.html">Pricing</a>
-    <a href="legal.html">Legal</a>
-  </div>
-  <div class="nav-cta" id="nav-dash-actions" style="display:none">
-    <span id="dash-tier" style="font-size:0.75rem"></span>
-    <button id="dashboard-logout" class="btn btn-ghost btn-sm">Sign Out</button>
-  </div>
-</nav>
+<header>
+  <h1>Client Dashboard</h1>
+</header>
 
-<!-- LOGIN -->
-<div id="dashboard-login" class="login-wrap" style="display:none">
-  <div class="login-box">
-    <div class="nav-logo" style="margin-bottom:1.5rem">
-      <div class="nav-logo-mark"></div>
-      Operion Dashboard
-    </div>
+<section>
+  <h3 id="tierStatus">Checking plan...</h3>
+</section>
 
-    <h1>Sign In</h1>
+<section>
+  <h3>Enquiry Activity</h3>
+  <div id="loading">Loading data...</div>
 
-    <p>
-      Enter your Business ID and Dashboard API Key.
-    </p>
+  <table id="clientTable" style="display:none;">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Enquiry</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</section>
 
-    <div id="login-error" style="margin-bottom:1rem"></div>
-
-    <form id="dashboard-login-form" novalidate>
-      <div class="form-group" style="margin-bottom:1rem">
-        <label class="form-label">Business ID</label>
-        <input type="text" id="login-bid" class="form-input" required>
-      </div>
-
-      <div class="form-group" style="margin-bottom:1.5rem">
-        <label class="form-label">Dashboard API Key</label>
-        <input type="password" id="login-key" class="form-input" required>
-      </div>
-
-      <button type="submit" class="btn btn-primary" style="width:100%">
-        Sign In →
-      </button>
-    </form>
-
-    <p style="font-size:0.75rem;color:var(--white-faint);margin-top:1.5rem;text-align:center">
-      Credentials are issued during onboarding.<br>
-      Contact: <a href="mailto:operionautomation@gmail.com">operionautomation@gmail.com</a>
-    </p>
-  </div>
-</div>
-
-<!-- DASHBOARD -->
-<div id="dashboard-view" style="display:none">
-
-  <div class="dash-header">
-    <div class="container">
-      <div class="dash-header-inner">
-        <div>
-          <div class="section-label">Operion Dashboard</div>
-          <h1 id="dash-business-name" class="display-3">Loading...</h1>
-        </div>
-        <div style="display:flex;gap:1rem;align-items:center">
-          <span id="dash-tier"></span>
-          <button id="dashboard-logout" class="btn btn-ghost btn-sm">Sign Out</button>
-        </div>
-      </div>
-
-      <div class="dash-tabs">
-        <button class="dash-tab active" data-tab="overview">Overview</button>
-        <button class="dash-tab" data-tab="hive">HIVE Mind</button>
-        <button class="dash-tab" data-tab="analytics">Analytics</button>
-        <button class="dash-tab" data-tab="enterprise">System</button>
-      </div>
-    </div>
-  </div>
-
-  <div class="dash-body">
-    <div class="container">
-
-      <!-- OVERVIEW -->
-      <div class="dash-section active" id="section-overview">
-        <div class="stats-grid">
-          <div class="stat-card">
-            <div class="stat-value" id="stat-enq-24h">—</div>
-            <div class="stat-label">Enquiries 24h</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-value" id="stat-enq-7d">—</div>
-            <div class="stat-label">Enquiries 7 days</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-value" id="stat-responded">—</div>
-            <div class="stat-label">Responded</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-value" id="stat-response-rate">—</div>
-            <div class="stat-label">Response Rate</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- HIVE -->
-      <div class="dash-section" id="section-hive">
-        <div class="tier-gate">
-          <h3>HIVE Mind</h3>
-          <p>Pattern detection and optimisation suggestions.</p>
-          <a href="pricing.html" class="btn btn-outline">View Tiers</a>
-        </div>
-      </div>
-
-      <!-- ANALYTICS -->
-      <div class="dash-section" id="section-analytics">
-        <div class="tier-gate">
-          <h3>Analytics</h3>
-          <p>Response and classification metrics based on processed enquiries.</p>
-          <a href="pricing.html" class="btn btn-outline">View Tiers</a>
-        </div>
-      </div>
-
-      <!-- SYSTEM -->
-      <div class="dash-section" id="section-enterprise">
-        <div class="tier-gate">
-          <h3>System View</h3>
-          <p>Read-only visibility into stored data and system state.</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-</div>
-
-<footer class="footer">
-  <div class="container">
-    <p>
-      © 2025 Operion Systems Ltd — Dashboard is read-only.
-      <a href="legal.html#ai-disclaimer">AI Disclaimer</a> applies.
-    </p>
-  </div>
-</footer>
+<section>
+  <button onclick="openBilling()">Manage Billing</button>
+</section>
 
 <script src="app.js"></script>
 </body>
