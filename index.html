@@ -11,11 +11,12 @@
 
 <header class="nav">
   <div class="logo">
-    <img src="assets/logo.svg"/>
+    <img src="assets/logo.svg" alt="Operion">
     <span>OPERION</span>
   </div>
+
   <div class="nav-actions">
-    <a href="#dashboard">Client Login</a>
+    <a href="admin.html">Admin</a>
     <a href="#onboard" class="btn-primary">Get Started</a>
   </div>
 </header>
@@ -38,59 +39,41 @@
   </p>
 
   <div class="cta">
-    <a href="#demo" class="btn-primary">Request Demo</a>
-    <a href="#onboard" class="btn-secondary">Start Free Trial</a>
-  </div>
-</section>
-
-<section class="section" id="how">
-  <h2>How Operion Works</h2>
-  <div class="grid-3">
-    <div>
-      <h3>Receives</h3>
-      <p>Operion captures enquiries from your email, forms, and APIs.</p>
-    </div>
-    <div>
-      <h3>Understands</h3>
-      <p>Each enquiry is evaluated using structured context and controlled AI.</p>
-    </div>
-    <div>
-      <h3>Responds</h3>
-      <p>Operion replies directly to your customer as your business.</p>
-    </div>
+    <button onclick="scrollToDemo()" class="btn-primary">Request Demo</button>
+    <button onclick="scrollToOnboard()" class="btn-secondary">Start Free Trial</button>
   </div>
 </section>
 
 <section class="section" id="demo">
   <h2>Request a Demonstration</h2>
+
   <form id="demoForm">
     <input placeholder="Name" required>
     <input placeholder="Email" required>
     <textarea placeholder="What would you like to test?"></textarea>
-    <button class="btn-primary">Request Demo</button>
+    <button class="btn-primary">Submit</button>
   </form>
+
+  <p id="demoStatus"></p>
 </section>
 
 <section class="section" id="onboard">
   <h2>Start Using Operion</h2>
+
   <form id="onboardForm">
 
-    <h3>Business Details</h3>
     <input placeholder="Business Name" required>
     <input placeholder="Owner Name" required>
     <input placeholder="Business Email" required>
 
-    <h3>Operational Setup</h3>
     <input placeholder="Business Type">
-    <input placeholder="Response Tone (e.g. professional)">
-    <input placeholder="Primary Objective (sales/support)">
+    <input placeholder="Response Tone">
+    <input placeholder="Primary Objective">
 
-    <h3>Email Configuration</h3>
     <input placeholder="SMTP Host">
     <input placeholder="SMTP Email">
-    <input placeholder="SMTP Password" type="password">
+    <input type="password" placeholder="SMTP Password">
 
-    <h3>Plan</h3>
     <select>
       <option>Starter</option>
       <option>Growth</option>
@@ -101,24 +84,18 @@
     <button class="btn-primary">Proceed to Payment</button>
 
   </form>
-</section>
 
-<section class="section" id="trust">
-  <h2>Designed for Control</h2>
-  <p>
-    Operion is a governed operations system. Every action is structured,
-    validated, and auditable. AI is used within defined constraints —
-    not as an uncontrolled decision maker.
-  </p>
+  <p id="onboardStatus"></p>
 </section>
 
 <footer>
   <p>Operion Systems Ltd</p>
-  <p>Contact: operionautomations@gmail.com</p>
-  <p><a href="legal.html">Legal, Licence & AI Disclaimer</a></p>
-  <p>© 2026 Operion Systems Ltd. All rights reserved.</p>
+  <p>operionautomations@gmail.com</p>
+  <p><a href="legal.html">Legal & Disclaimer</a></p>
+  <p>© 2026 Operion Systems Ltd</p>
 </footer>
 
 <script src="script.js"></script>
+
 </body>
 </html>
