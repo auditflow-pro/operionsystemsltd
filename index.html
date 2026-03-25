@@ -3,163 +3,138 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Operion Systems Ltd</title>
-
 <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-<header class="nav">
+<!-- NAV -->
+<div class="nav">
     <div class="nav-left">
         <img src="logo.svg" class="logo">
-        <span class="brand">OPERION</span>
+        <div class="brand">OPERION</div>
     </div>
-
     <div class="nav-right">
-        <button onclick="scrollToSection('pricing')">Pricing</button>
-        <button onclick="scrollToSection('onboard')" class="cta">Activate</button>
+        <button onclick="scrollToDemo()">Demo</button>
+        <button class="cta" onclick="scrollToOnboard()">Activate</button>
     </div>
-</header>
+</div>
 
+<!-- HERO -->
 <section class="hero">
-
     <div class="tag">AI-POWERED ENQUIRY HANDLING — LIVE 24/7</div>
-
     <h1>
         Every enquiry.<br>
         <span>Handled.</span><br>
         Automatically.
     </h1>
-
     <p>
-        Operion receives, evaluates, and responds to customer enquiries using structured logic and controlled AI execution.
+        Operion receives, evaluates, and responds using deterministic logic and controlled AI execution.
     </p>
-
     <div class="actions">
-        <button onclick="scrollToSection('demo')" class="primary">Request Demo</button>
-        <button onclick="scrollToSection('onboard')" class="secondary">Activate Operion</button>
+        <button class="primary" onclick="scrollToDemo()">Request Demo</button>
+        <button class="secondary" onclick="scrollToOnboard()">Activate Operion</button>
     </div>
-
 </section>
 
-<section class="system">
-
+<!-- SYSTEM -->
+<section>
 <h2>SYSTEM ARCHITECTURE</h2>
-
 <div class="grid">
-
-<div>
-<h3>INPUT</h3>
-<p>Webhooks, email, forms, APIs. All enquiries captured deterministically.</p>
+    <div><h3>INPUT</h3><p>Email, forms, APIs captured deterministically.</p></div>
+    <div><h3>PROCESS</h3><p>Structured logic + controlled AI evaluation.</p></div>
+    <div><h3>DECISION</h3><p>Classification, escalation, risk scoring.</p></div>
+    <div><h3>OUTPUT</h3><p>Direct responses. Logged. Auditable.</p></div>
 </div>
-
-<div>
-<h3>PROCESS</h3>
-<p>Structured rules + constrained AI evaluation within defined context layers.</p>
-</div>
-
-<div>
-<h3>DECISION</h3>
-<p>Classification, scoring, escalation, and risk logic applied.</p>
-</div>
-
-<div>
-<h3>OUTPUT</h3>
-<p>Direct response as your business. Logged. Timestamped. Auditable.</p>
-</div>
-
-</div>
-
 </section>
 
-<section class="pricing" id="pricing">
-
+<!-- PRICING -->
+<section>
 <h2>EXECUTION TIERS</h2>
-
 <div class="tiers">
-
-<div>
-<h3>STARTER</h3>
-<p>£79/month</p>
-<p>500 enquiries/hour</p>
+    <div><h3>STARTER</h3><p>£79/month</p><p>500 enquiries/hour</p></div>
+    <div><h3>GROWTH</h3><p>£149/month</p><p>2,000 enquiries/hour</p></div>
+    <div><h3>SCALE</h3><p>£249/month</p><p>5,000 enquiries/hour</p></div>
+    <div><h3>ENTERPRISE</h3><p>£399/month</p><p>Unlimited throughput</p></div>
 </div>
-
-<div>
-<h3>GROWTH</h3>
-<p>£149/month</p>
-<p>2,000 enquiries/hour</p>
-</div>
-
-<div>
-<h3>SCALE</h3>
-<p>£249/month</p>
-<p>5,000 enquiries/hour</p>
-</div>
-
-<div>
-<h3>ENTERPRISE</h3>
-<p>£399/month</p>
-<p>Unlimited throughput</p>
-</div>
-
-</div>
-
 </section>
 
-<section class="demo" id="demo">
-
+<!-- DEMO -->
+<section id="demo">
 <h2>REQUEST DEMONSTRATION</h2>
-
 <form id="demoForm">
-<input placeholder="Name" required>
-<input placeholder="Email" required>
-<textarea placeholder="Test scenario"></textarea>
-<button type="submit">Submit</button>
+    <input placeholder="Name" required>
+    <input placeholder="Email" required>
+    <textarea placeholder="Test scenario"></textarea>
+    <button type="submit">Submit</button>
+    <div id="demoStatus"></div>
 </form>
-
-<p id="demoStatus"></p>
-
 </section>
 
-<section class="onboard" id="onboard">
+<!-- ONBOARDING SYSTEM -->
+<section id="onboard">
+<h2>OPERION ACTIVATION</h2>
 
-<h2>OPERION CONFIGURATION</h2>
+<div class="step-indicator">
+    Step <span id="stepNumber">1</span> of 5
+</div>
 
 <form id="onboardForm">
 
-<h3>BUSINESS PROFILE</h3>
-<input placeholder="Business Name" required>
-<input placeholder="Owner Name" required>
-<input placeholder="Business Email" required>
+<!-- STEP 1 -->
+<div class="step active">
+    <h3>Business Profile</h3>
+    <input placeholder="Business Name" required>
+    <input placeholder="Owner Name" required>
+    <input placeholder="Business Email" required>
+    <input placeholder="Phone Number">
+</div>
 
-<h3>OPERATIONAL CONTEXT</h3>
-<textarea placeholder="Services"></textarea>
-<textarea placeholder="Response tone"></textarea>
+<!-- STEP 2 -->
+<div class="step">
+    <h3>Brand Voice</h3>
+    <textarea placeholder="Describe tone"></textarea>
+    <textarea placeholder="Services offered"></textarea>
+</div>
 
-<h3>EMAIL SYSTEM</h3>
-<input placeholder="SMTP Host">
-<input placeholder="SMTP Username">
-<input placeholder="SMTP Password">
+<!-- STEP 3 -->
+<div class="step">
+    <h3>System Context</h3>
+    <input placeholder="Operating Hours">
+    <input placeholder="Emergency Contact">
+    <textarea placeholder="Custom instructions"></textarea>
+</div>
 
-<h3>LEGAL CONFIRMATION</h3>
+<!-- STEP 4 -->
+<div class="step">
+    <h3>Email Configuration</h3>
+    <input placeholder="SMTP Host">
+    <input placeholder="SMTP Username">
+    <input placeholder="SMTP Password">
+</div>
 
-<label><input type="checkbox"> Accept Terms</label>
-<label><input type="checkbox"> Accept AI Disclaimer</label>
-<label><input type="checkbox"> GDPR Compliance</label>
+<!-- STEP 5 -->
+<div class="step">
+    <h3>Legal Confirmation</h3>
+    <label><input type="checkbox"> Accept Terms</label>
+    <label><input type="checkbox"> Accept AI Disclaimer</label>
+    <label><input type="checkbox"> GDPR Compliance</label>
+</div>
 
-<button type="submit">Proceed to Payment</button>
+<div class="step-controls">
+    <button type="button" onclick="prevStep()">Back</button>
+    <button type="button" onclick="nextStep()">Next</button>
+</div>
+
+<div id="onboardStatus"></div>
 
 </form>
-
-<p id="onboardStatus"></p>
-
 </section>
 
 <footer>
 Operion Systems Ltd<br>
-operionautomations@gmail.com<br>
+operionautomations@gmail.com<br><br>
 © 2026 Operion Systems Ltd
 </footer>
 
