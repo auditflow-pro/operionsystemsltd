@@ -3,83 +3,122 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Operion Systems</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<title>Operion Systems Ltd</title>
 <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
 <header class="nav">
-  <img src="/logo.svg" class="logo"/>
-  <div class="nav-right">
-    <button class="btn-outline">Client Login</button>
-    <button class="btn-primary">Get Started</button>
+  <div class="logo">
+    <img src="assets/logo.svg"/>
+    <span>OPERION</span>
+  </div>
+  <div class="nav-actions">
+    <a href="#dashboard">Client Login</a>
+    <a href="#onboard" class="btn-primary">Get Started</a>
   </div>
 </header>
 
-<section class="pricing">
+<section class="hero">
+  <div class="badge">AI-Powered Enquiry Handling — Live 24/7</div>
 
-  <div class="card">
-    <h3>Starter</h3>
-    <h1>£79</h1>
-    <p>500 enquiries/hour</p>
-    <ul>
-      <li>All channels</li>
-      <li>4-tier failsafe</li>
-      <li>Guardian security</li>
-      <li>Stripe billing</li>
-    </ul>
-    <button onclick="startCheckout('starter')">Get Started</button>
+  <h1>
+    Every customer enquiry.<br>
+    <span class="accent">Handled.</span><br>
+    Automatically.
+  </h1>
+
+  <p>
+    Operion receives your customer messages, understands what they need,
+    and responds in your business voice — directly from your email.
+    <br><br>
+    No dashboards to manage. No workflows to maintain.
+    Just every enquiry handled correctly.
+  </p>
+
+  <div class="cta">
+    <a href="#demo" class="btn-primary">Request Demo</a>
+    <a href="#onboard" class="btn-secondary">Start Free Trial</a>
   </div>
-
-  <div class="card highlight">
-    <h3>Growth</h3>
-    <h1>£149</h1>
-    <p>2,000 enquiries/hour</p>
-    <ul>
-      <li>HIVE analysis</li>
-      <li>Knowledge search</li>
-      <li>External ingestion</li>
-    </ul>
-    <button onclick="startCheckout('growth')">Get Started</button>
-  </div>
-
-  <div class="card">
-    <h3>Scale</h3>
-    <h1>£249</h1>
-    <p>5,000 enquiries/hour</p>
-    <ul>
-      <li>Full analytics</li>
-      <li>Model usage tracking</li>
-    </ul>
-    <button onclick="startCheckout('scale')">Get Started</button>
-  </div>
-
-  <div class="card">
-    <h3>Enterprise</h3>
-    <h1>£399</h1>
-    <p>Unlimited</p>
-    <ul>
-      <li>Vector management</li>
-      <li>Queue monitoring</li>
-      <li>Priority support</li>
-    </ul>
-    <button onclick="startCheckout('enterprise')">Get Started</button>
-  </div>
-
 </section>
 
-<script>
-async function startCheckout(plan) {
-  const res = await fetch("/.netlify/functions/create-checkout", {
-    method: "POST",
-    body: JSON.stringify({ plan })
-  });
-  const data = await res.json();
-  window.location = data.url;
-}
-</script>
+<section class="section" id="how">
+  <h2>How Operion Works</h2>
+  <div class="grid-3">
+    <div>
+      <h3>Receives</h3>
+      <p>Operion captures enquiries from your email, forms, and APIs.</p>
+    </div>
+    <div>
+      <h3>Understands</h3>
+      <p>Each enquiry is evaluated using structured context and controlled AI.</p>
+    </div>
+    <div>
+      <h3>Responds</h3>
+      <p>Operion replies directly to your customer as your business.</p>
+    </div>
+  </div>
+</section>
 
+<section class="section" id="demo">
+  <h2>Request a Demonstration</h2>
+  <form id="demoForm">
+    <input placeholder="Name" required>
+    <input placeholder="Email" required>
+    <textarea placeholder="What would you like to test?"></textarea>
+    <button class="btn-primary">Request Demo</button>
+  </form>
+</section>
+
+<section class="section" id="onboard">
+  <h2>Start Using Operion</h2>
+  <form id="onboardForm">
+
+    <h3>Business Details</h3>
+    <input placeholder="Business Name" required>
+    <input placeholder="Owner Name" required>
+    <input placeholder="Business Email" required>
+
+    <h3>Operational Setup</h3>
+    <input placeholder="Business Type">
+    <input placeholder="Response Tone (e.g. professional)">
+    <input placeholder="Primary Objective (sales/support)">
+
+    <h3>Email Configuration</h3>
+    <input placeholder="SMTP Host">
+    <input placeholder="SMTP Email">
+    <input placeholder="SMTP Password" type="password">
+
+    <h3>Plan</h3>
+    <select>
+      <option>Starter</option>
+      <option>Growth</option>
+      <option>Scale</option>
+      <option>Enterprise</option>
+    </select>
+
+    <button class="btn-primary">Proceed to Payment</button>
+
+  </form>
+</section>
+
+<section class="section" id="trust">
+  <h2>Designed for Control</h2>
+  <p>
+    Operion is a governed operations system. Every action is structured,
+    validated, and auditable. AI is used within defined constraints —
+    not as an uncontrolled decision maker.
+  </p>
+</section>
+
+<footer>
+  <p>Operion Systems Ltd</p>
+  <p>Contact: operionautomations@gmail.com</p>
+  <p><a href="legal.html">Legal, Licence & AI Disclaimer</a></p>
+  <p>© 2026 Operion Systems Ltd. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
