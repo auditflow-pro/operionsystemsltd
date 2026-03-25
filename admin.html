@@ -1,18 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <title>Operion Admin</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h2>Operion Admin</h2>
+<header>
+  <h1>Operion Admin</h1>
+</header>
 
-<input id="key" placeholder="Admin Key">
-<button onclick="load()">Load Suggestions</button>
+<section id="loginSection">
+  <h3>Admin Login</h3>
+  <input type="email" id="adminEmail" placeholder="Email">
+  <input type="password" id="adminPassword" placeholder="Password">
+  <button onclick="adminLogin()">Login</button>
+  <p id="loginStatus"></p>
+</section>
 
-<div id="data"></div>
+<section id="adminSection" style="display:none;">
 
-<script src="admin.js"></script>
+  <div class="toolbar">
+    <button onclick="loadOverview()">Refresh Overview</button>
+    <button onclick="loadPending()">Pending Approvals</button>
+    <button class="secondary" onclick="adminLogout()">Logout</button>
+  </div>
 
+  <h3>System Overview</h3>
+  <div id="overview"></div>
+
+  <h3>Automation Queue</h3>
+  <table id="approvalTable">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Enquiry</th>
+        <th>AI Response</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+</section>
+
+<script src="app.js"></script>
 </body>
 </html>
