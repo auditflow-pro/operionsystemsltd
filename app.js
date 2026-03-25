@@ -1,7 +1,6 @@
 const OPERION = {
   BASE_URL: 'https://YOUR-N8N-INSTANCE.com',
   SECRET: 'YOUR-NETLIFY-WEBHOOK-SECRET',
-
   STRIPE: {
     PUBLISHABLE_KEY: 'pk_live_YOUR_STRIPE_KEY',
     PRICES: {
@@ -14,15 +13,11 @@ const OPERION = {
   }
 };
 
-// =====================
-// UTIL
-// =====================
 async function api(path, options = {}, auth = false) {
   const headers = options.headers || {};
 
   if (auth) {
-    const token = localStorage.getItem('operion_admin_token');
-    headers['Authorization'] = `Bearer ${token}`;
+    headers['Authorization'] = `Bearer ${localStorage.getItem('operion_admin_token')}`;
   } else {
     headers['x-operion-secret'] = OPERION.SECRET;
   }
@@ -33,19 +28,13 @@ async function api(path, options = {}, auth = false) {
       headers
     });
 
-    if (!res.ok) throw new Error("API error");
-
+    if (!res.ok) throw new Error();
     return await res.json();
-
-  } catch (err) {
-    console.error(err);
+  } catch {
     return null;
   }
 }
 
-// =====================
-// ADMIN AUTH
-// =====================
 async function adminLogin() {
   const email = document.getElementById('adminEmail').value;
   const password = document.getElementById('adminPassword').value;
@@ -62,6 +51,8 @@ async function adminLogin() {
   if (data && data.token) {
     localStorage.setItem('operion_admin_token', data.token);
     showAdmin();
+    loadOverview();
+    loadPending();
   } else {
     status.innerText = "Login failed.";
   }
@@ -86,9 +77,6 @@ function adminLogout() {
   }
 })();
 
-// =====================
-// SYSTEM OVERVIEW
-// =====================
 async function loadOverview() {
   const el = document.getElementById('overview');
   el.innerHTML = "Loading...";
@@ -96,20 +84,17 @@ async function loadOverview() {
   const data = await api('/webhook/operion/admin/overview', {}, true);
 
   if (!data) {
-    el.innerHTML = "Error loading overview.";
+    el.innerHTML = "Error";
     return;
   }
 
   el.innerHTML = `
     <p>Total Clients: ${data.clients || 0}</p>
     <p>Total Enquiries: ${data.enquiries || 0}</p>
-    <p>Pending Approvals: ${data.pending || 0}</p>
+    <p>Pending: ${data.pending || 0}</p>
   `;
 }
 
-// =====================
-// APPROVAL QUEUE
-// =====================
 async function loadPending() {
   const tbody = document.querySelector('#approvalTable tbody');
   tbody.innerHTML = "<tr><td colspan='4'>Loading...</td></tr>";
@@ -117,7 +102,7 @@ async function loadPending() {
   const data = await api('/webhook/operion/admin/pending', {}, true);
 
   if (!data || data.length === 0) {
-    tbody.innerHTML = "<tr><td colspan='4'>No pending items</td></tr>";
+    tbody.innerHTML = "<tr><td colspan='4' class='empty'>No pending approvals</td></tr>";
     return;
   }
 
@@ -132,7 +117,7 @@ async function loadPending() {
       <td>${item.response}</td>
       <td>
         <button onclick="approve('${item.id}')">Approve</button>
-        <button onclick="deny('${item.id}')">Deny</button>
+        <button class="danger" onclick="deny('${item.id}')">Deny</button>
       </td>
     `;
 
@@ -162,9 +147,6 @@ async function deny(id) {
   loadOverview();
 }
 
-// =====================
-// CLIENT DASHBOARD
-// =====================
 async function loadDashboard() {
   const table = document.querySelector('#clientTable tbody');
   const loading = document.getElementById('loading');
@@ -198,7 +180,7 @@ async function loadDashboard() {
     const row = `<tr>
       <td>${item.date || ''}</td>
       <td>${item.enquiry || ''}</td>
-      <td>${item.status || ''}</td>
+      <td><span class="badge ${item.status}">${item.status}</span></td>
     </tr>`;
     table.innerHTML += row;
   });
@@ -206,9 +188,6 @@ async function loadDashboard() {
 
 loadDashboard();
 
-// =====================
-// BILLING
-// =====================
 function openBilling() {
   window.location.href = OPERION.STRIPE.BILLING_PORTAL;
 }
