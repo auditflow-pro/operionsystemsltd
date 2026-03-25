@@ -1,9 +1,9 @@
 function scrollToDemo(){
-  document.getElementById("demo").scrollIntoView();
+  document.getElementById("demo").scrollIntoView({behavior:"smooth"});
 }
 
 function scrollToOnboard(){
-  document.getElementById("onboard").scrollIntoView();
+  document.getElementById("onboard").scrollIntoView({behavior:"smooth"});
 }
 
 document.getElementById("demoForm").onsubmit = function(e){
