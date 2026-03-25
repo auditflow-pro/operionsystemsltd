@@ -7,20 +7,26 @@
 
 /* BASE */
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background: #040b14;
-  color: #e6f1ff;
-  line-height: 1.6;
+  font-family: system-ui, -apple-system, sans-serif;
+  background: #020812;
+  color: #d9e6f2;
+  line-height: 1.5;
 }
 
-/* NAVBAR */
+/* GLOBAL CONTAINER */
+.section {
+  max-width: 920px;
+  margin: auto;
+  padding: 60px 20px;
+}
+
+/* NAV */
 .nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 24px;
-  border-bottom: 1px solid #0f2a3d;
-  background: rgba(4,11,20,0.95);
+  padding: 18px 24px;
+  border-bottom: 1px solid #0d2233;
 }
 
 .logo {
@@ -30,8 +36,7 @@ body {
 }
 
 .logo img {
-  width: 32px;
-  height: 32px;
+  width: 28px;
 }
 
 .logo span {
@@ -39,136 +44,145 @@ body {
   letter-spacing: 1px;
 }
 
-.nav-actions {
-  display: flex;
-  gap: 12px;
-}
-
 .nav-actions a {
-  color: #9fb3c8;
-  text-decoration: none;
+  margin-left: 16px;
   font-size: 14px;
+  color: #8aa2b5;
+  text-decoration: none;
 }
 
 /* HERO */
 .hero {
-  padding: 80px 24px 60px;
-  max-width: 900px;
+  padding: 80px 20px 40px;
+  max-width: 920px;
   margin: auto;
 }
 
 .badge {
-  color: #00e0ff;
-  font-size: 14px;
-  margin-bottom: 20px;
+  color: #00d9ff;
+  font-size: 13px;
+  margin-bottom: 18px;
 }
 
 h1 {
-  font-size: 44px;
-  font-weight: 700;
+  font-size: 42px;
   line-height: 1.2;
+  font-weight: 600;
 }
 
 .accent {
-  color: #00e0ff;
+  color: #00d9ff;
 }
 
 .hero p {
-  margin-top: 20px;
-  color: #9fb3c8;
-  max-width: 600px;
-}
-
-.cta {
-  margin-top: 30px;
-  display: flex;
-  gap: 12px;
+  margin-top: 18px;
+  color: #8aa2b5;
+  max-width: 580px;
 }
 
 /* BUTTONS */
+.cta {
+  margin-top: 28px;
+  display: flex;
+  gap: 10px;
+}
+
+button {
+  cursor: pointer;
+  font-size: 14px;
+}
+
 .btn-primary {
-  background: #00e0ff;
-  color: #000;
+  background: #00d9ff;
+  color: #001018;
   padding: 12px 18px;
   border: none;
   font-weight: 600;
-  cursor: pointer;
 }
 
 .btn-secondary {
-  border: 1px solid #00e0ff;
-  color: #00e0ff;
+  border: 1px solid #00d9ff;
+  color: #00d9ff;
   padding: 12px 18px;
   background: transparent;
-  cursor: pointer;
 }
 
-/* SECTIONS */
-.section {
-  padding: 60px 24px;
-  max-width: 900px;
-  margin: auto;
+/* STRUCTURED BLOCKS (KEY CHANGE) */
+.block {
+  border: 1px solid #0d2233;
+  background: #060f1a;
+  padding: 22px;
+  margin-top: 20px;
 }
 
-.section h2 {
-  font-size: 28px;
-  margin-bottom: 20px;
-}
-
-/* GRID */
+/* GRID SYSTEM */
 .grid-3 {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 20px;
+  gap: 16px;
 }
 
-.grid-3 div {
-  background: #0b1624;
-  padding: 20px;
-  border: 1px solid #1e3a52;
+.grid-3 .block h3 {
+  margin-bottom: 8px;
 }
 
-/* PRICING */
+/* PRICING (NOT CARDS — PANELS) */
 .pricing {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 20px;
+  gap: 14px;
 }
 
-.card {
-  background: #0b1624;
-  padding: 20px;
-  border: 1px solid #1e3a52;
+.plan {
+  border: 1px solid #0d2233;
+  background: #050e18;
+  padding: 18px;
 }
 
-.card h3 {
-  margin-bottom: 10px;
+.plan.highlight {
+  border: 1px solid #00d9ff;
 }
 
-.price {
-  font-size: 24px;
-  color: #00e0ff;
-  margin-bottom: 10px;
+.plan h3 {
+  font-size: 16px;
+  margin-bottom: 6px;
 }
 
-.highlight {
-  border: 2px solid #00e0ff;
+.plan .price {
+  font-size: 20px;
+  color: #00d9ff;
+  margin-bottom: 6px;
 }
 
-/* FORMS */
+.plan p {
+  font-size: 13px;
+  color: #8aa2b5;
+}
+
+/* FORM = SYSTEM CONFIG PANEL */
 form {
   margin-top: 20px;
 }
 
+form h3 {
+  margin-top: 30px;
+  margin-bottom: 10px;
+  font-size: 15px;
+  color: #00d9ff;
+}
+
+/* INPUTS */
 input,
 textarea,
 select {
   width: 100%;
-  margin: 10px 0;
   padding: 12px;
-  background: #0b1624;
-  border: 1px solid #1e3a52;
-  color: #fff;
+  margin-bottom: 12px;
+
+  background: #020812;
+  border: 1px solid #0d2233;
+
+  color: #d9e6f2;
   font-size: 14px;
 }
 
@@ -176,36 +190,40 @@ textarea {
   min-height: 100px;
 }
 
+/* CHECKBOX BLOCK */
 label {
   display: block;
-  margin-top: 10px;
-  font-size: 14px;
-  color: #9fb3c8;
+  font-size: 13px;
+  color: #8aa2b5;
+  margin-bottom: 10px;
 }
 
-/* STATUS TEXT */
+/* STATUS */
 #demoStatus,
 #onboardStatus {
   margin-top: 10px;
-  color: #00e0ff;
-  font-size: 14px;
+  color: #00d9ff;
+  font-size: 13px;
 }
 
 /* FOOTER */
 footer {
+  margin-top: 60px;
+  padding: 30px 20px;
   text-align: center;
-  padding: 40px 20px;
-  border-top: 1px solid #0f2a3d;
-  color: #9fb3c8;
+  border-top: 1px solid #0d2233;
+  color: #8aa2b5;
+  font-size: 13px;
 }
 
 footer a {
-  color: #00e0ff;
+  color: #00d9ff;
   text-decoration: none;
 }
 
-/* MOBILE IMPROVEMENTS */
+/* DESKTOP */
 @media (min-width: 768px) {
+
   .grid-3 {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -215,6 +233,6 @@ footer a {
   }
 
   h1 {
-    font-size: 52px;
+    font-size: 50px;
   }
 }
