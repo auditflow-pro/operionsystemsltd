@@ -1,45 +1,54 @@
-let currentStep = 0;
-const steps = document.querySelectorAll(".step");
-const stepNumber = document.getElementById("stepNumber");
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Operion Admin</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-function showStep(index){
-    steps.forEach((step, i) => {
-        step.classList.toggle("active", i === index);
-    });
-    stepNumber.textContent = index + 1;
-}
+<header>
+  <h1>Operion Admin</h1>
+</header>
 
-function nextStep(){
-    if(currentStep < steps.length - 1){
-        currentStep++;
-        showStep(currentStep);
-    } else {
-        document.getElementById("onboardStatus").innerText =
-        "Activation request received. Operion will initialise your system.";
-    }
-}
+<!-- LOGIN -->
+<section id="loginSection">
+  <h3>Admin Login</h3>
+  <input type="email" id="adminEmail" placeholder="Email">
+  <input type="password" id="adminPassword" placeholder="Password">
+  <button onclick="adminLogin()">Login</button>
+  <p id="loginStatus"></p>
+</section>
 
-function prevStep(){
-    if(currentStep > 0){
-        currentStep--;
-        showStep(currentStep);
-    }
-}
+<!-- ADMIN -->
+<section id="adminSection" style="display:none;">
 
-function scrollToDemo(){
-    document.getElementById("demo").scrollIntoView({behavior:"smooth"});
-}
+  <div class="toolbar">
+    <button onclick="loadOverview()">Refresh Overview</button>
+    <button onclick="loadPending()">Pending Approvals</button>
+    <button onclick="adminLogout()">Logout</button>
+  </div>
 
-function scrollToOnboard(){
-    document.getElementById("onboard").scrollIntoView({behavior:"smooth"});
-}
+  <h3>System Overview</h3>
+  <div id="overview">
+    <p>Loading...</p>
+  </div>
 
-/* Demo form */
-document.getElementById("demoForm").onsubmit = function(e){
-    e.preventDefault();
-    document.getElementById("demoStatus").innerText =
-    "Demo request received.";
-};
+  <h3>Automation Queue</h3>
+  <table id="approvalTable">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Enquiry</th>
+        <th>AI Response</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
 
-/* Initialise */
-showStep(currentStep);
+</section>
+
+<script src="app.js"></script>
+</body>
+</html>
